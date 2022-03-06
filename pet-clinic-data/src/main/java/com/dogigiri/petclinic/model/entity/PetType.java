@@ -1,4 +1,4 @@
-package com.dogigiri.model.entity;
+package com.dogigiri.petclinic.model.entity;
 
 public class PetType {
     private String type;

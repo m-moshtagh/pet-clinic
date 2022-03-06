@@ -1,10 +1,12 @@
-package com.dogigiri.model.service.mapservice;
+package com.dogigiri.petclinic.model.service.mapservice;
 
-import com.dogigiri.model.entity.Vet;
-import com.dogigiri.model.service.VetService;
+import com.dogigiri.petclinic.model.entity.Vet;
+import com.dogigiri.petclinic.model.service.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MapVetService extends MapService<Vet, Long> implements VetService {
     @Override
     public List<Vet> findAll() {

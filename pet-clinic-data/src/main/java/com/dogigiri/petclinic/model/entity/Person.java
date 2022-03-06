@@ -1,8 +1,14 @@
-package com.dogigiri.model.entity;
+package com.dogigiri.petclinic.model.entity;
 
 public class Person extends BaseEntity {
-    private String firstname;
-    private String lastname;
+    protected String firstname;
+    protected String lastname;
+
+    public Person(Long id, String firstname, String lastname) {
+        super(id);
+        this.firstname = firstname;
+        this.lastname = lastname;
+    }
 
     public String getFirstname() {
         return firstname;

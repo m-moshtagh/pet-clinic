@@ -1,0 +1,12 @@
+logging:
+  level:
+    org:
+      springframework:
+        web:
+          INFO
+      hibernate:
+        ERROR
+    com:
+      dogigiri:
+        petclinic:
+          DEBUG

@@ -1,4 +1,4 @@
-package com.dogigiri.model.repository;
+package com.dogigiri.petclinic.model.repository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.dogigiri.model.service.mapservice;
+package com.dogigiri.petclinic.model.service.mapservice;
 
 import java.util.ArrayList;
 import java.util.HashMap;

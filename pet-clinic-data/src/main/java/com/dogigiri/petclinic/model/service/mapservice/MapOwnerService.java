@@ -1,11 +1,13 @@
-package com.dogigiri.model.service.mapservice;
+package com.dogigiri.petclinic.model.service.mapservice;
 
-import com.dogigiri.model.entity.Owner;
-import com.dogigiri.model.service.OwnerService;
+import com.dogigiri.petclinic.model.entity.Owner;
+import com.dogigiri.petclinic.model.service.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-public class MapOwnerService extends MapService<Owner, Long> implements OwnerService{
+@Service
+public class MapOwnerService extends MapService<Owner, Long> implements OwnerService {
     @Override
     public List<Owner> findAll() {
         return super.findAll();

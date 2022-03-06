@@ -1,4 +1,4 @@
-package com.dogigiri.model.entity;
+package com.dogigiri.petclinic.model.entity;
 
 import java.time.LocalDate;
 
