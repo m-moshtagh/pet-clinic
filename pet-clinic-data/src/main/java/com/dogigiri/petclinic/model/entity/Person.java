@@ -4,6 +4,9 @@ public class Person extends BaseEntity {
     protected String firstname;
     protected String lastname;
 
+    public Person() {
+
+    }
     public Person(Long id, String firstname, String lastname) {
         super(id);
         this.firstname = firstname;
@@ -14,17 +17,15 @@ public class Person extends BaseEntity {
         return firstname;
     }
 
-    public Person setFirstname(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
-        return this;
     }
 
     public String getLastname() {
         return lastname;
     }
 
-    public Person setLastname(String lastname) {
+    public void setLastname(String lastname) {
         this.lastname = lastname;
-        return this;
     }
 }

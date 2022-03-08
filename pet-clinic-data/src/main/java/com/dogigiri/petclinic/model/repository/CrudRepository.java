@@ -2,16 +2,14 @@ package com.dogigiri.petclinic.model.repository;
 
 import java.util.List;
 
-public interface CrudRepository<T, ID>{
+public interface CrudRepository<T, E>{
     List<T> findAll();
 
-    T findById(ID id);
+    T findById(E e);
 
     T save(T type);
 
     T update(T type);
 
-    boolean delete(T type);
-
-    boolean deleteById(ID id);
+    void deleteById(E e);
 }

@@ -14,27 +14,23 @@ public class MapOwnerService extends MapService<Owner, Long> implements OwnerSer
     }
 
     @Override
-    public Owner findById(Long aLong) {
-        return super.findById(aLong);
+    public Owner findById(Long id) {
+        return super.findById(id);
     }
 
     @Override
     public Owner save(Owner type) {
-        return super.save(type.getId(), type);
+        return super.save(type);
     }
 
     @Override
     public Owner update(Owner type) {
-        return super.save(type.getId(), type);
+        return super.save(type);
     }
 
-    @Override
-    public boolean delete(Owner type) {
-        return super.delete(type);
-    }
 
     @Override
-    public boolean deleteById(Long aLong) {
-        return super.deleteById(aLong);
+    public void deleteById(Long id) {
+         super.deleteById(id);
     }
 }

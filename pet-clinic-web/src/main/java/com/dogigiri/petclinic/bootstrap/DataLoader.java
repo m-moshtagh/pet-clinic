@@ -23,15 +23,23 @@ public class DataLoader implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // Create Owner instances:
-        Owner owner1 = new Owner(1000L, "Kakashi", "Hatake");
-        Owner owner2 = new Owner(1001L, "Itachi", "Sasuke");
+        Owner owner1 = new Owner();
+        owner1.setFirstname("Kakashi");
+        owner1.setLastname("Hatake");
+        Owner owner2 = new Owner();
+        owner2.setFirstname("Itachi");
+        owner2.setLastname("Uchiha");
         ownerService.save(owner1);
         ownerService.save(owner2);
         logger.info("Owners created...");
 
         // Create Vet instances:
-        Vet vet1 = new Vet(2000L, "Madara", "Uchiha");
-        Vet vet2 = new Vet(2001L, "Suske", "Aizen");
+        Vet vet1 = new Vet();
+        vet1.setFirstname("Madara");
+        vet1.setLastname("Uchiha");
+        Vet vet2 = new Vet();
+        vet2.setFirstname("Jirayia");
+        vet2.setLastname("Sensei");
         vetService.save(vet1);
         vetService.save(vet2);
         logger.info("Vets created...");

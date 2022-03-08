@@ -14,23 +14,18 @@ public class MapVetService extends MapService<Vet, Long> implements VetService {
     }
 
     @Override
-    public boolean deleteById(Long id) {
-        return super.deleteById(id);
-    }
-
-    @Override
-    public boolean delete(Vet type) {
-        return super.delete(type);
+    public void deleteById(Long id) {
+        super.deleteById(id);
     }
 
     @Override
     public Vet save(Vet type) {
-        return super.save(type.getId(), type);
+        return super.save(type);
     }
 
     @Override
     public Vet update(Vet type) {
-        return super.save(type.getId(), type);
+        return super.save(type);
     }
 
     @Override

@@ -1,36 +1,41 @@
 package com.dogigiri.petclinic.model.service.mapservice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.dogigiri.petclinic.model.entity.BaseEntity;
 
-public abstract class MapService<T, ID> {
-    protected Map<ID, T> map = new HashMap<>();
+import java.util.*;
+
+public abstract class MapService<T extends BaseEntity, E extends Long> {
+    protected Map<Long, T> map = new HashMap<>();
 
     List<T> findAll() {
         return new ArrayList<>(map.values());
     }
 
-    T findById(ID id) {
-        return map.get(id);
+    T findById(E e) {
+        return map.get(e);
     }
 
-    T save(ID id, T type) {
-        return map.put(id, type);
+    T save(T type) {
+        if (type != null) {
+            if (type.getId() == null) {
+                type.setId(getNextId());
+            }
+            return map.put(getNextId(), type);
+        }
+        throw new InputMismatchException();
     }
 
-    boolean deleteById(ID id) {
-        if(! map.containsKey(id))
-            return false;
-        map.remove(id);
-        return true;
+    void deleteById(E e) {
+        map.remove(e);
     }
 
-    boolean delete(T type) {
-        if(! map.containsValue(type))
-            return false;
-        map.remove(type);
-        return true;
+    private Long getNextId() {
+        long nextId;
+        try {
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e) {
+            nextId = 1L;
+        }
+        return nextId;
     }
 }
