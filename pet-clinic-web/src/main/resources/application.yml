@@ -10,3 +10,9 @@ logging:
       dogigiri:
         petclinic:
           DEBUG
+
+# i18internationalization
+spring:
+  messages:
+    basename: messages/messages
+
