@@ -1,7 +1,16 @@
 package com.dogigiri.petclinic.model.entity;
 
-public class PetType {
+public class PetType extends BaseEntity {
     private String type;
+
+    public PetType() {
+
+    }
+
+    public PetType(Long id, String type) {
+        super(id);
+        this.type = type;
+    }
 
     public String getType() {
         return type;

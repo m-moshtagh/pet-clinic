@@ -1,46 +1,104 @@
 package com.dogigiri.petclinic.bootstrap;
 
-import com.dogigiri.petclinic.model.entity.Owner;
-import com.dogigiri.petclinic.model.entity.Vet;
-import com.dogigiri.petclinic.model.service.OwnerService;
-import com.dogigiri.petclinic.model.service.VetService;
+import com.dogigiri.petclinic.model.entity.*;
+import com.dogigiri.petclinic.model.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
+
+import java.time.LocalDate;
 
 @Component
 public class DataLoader implements CommandLineRunner {
     private static final Logger logger = LoggerFactory.getLogger(DataLoader.class);
     private final OwnerService ownerService;
     private final VetService vetService;
+    private final PetTypeService petTypeService;
+    private final PetService petService;
+    private final SpecialityService specialityService;
 
-    public DataLoader(OwnerService ownerService, VetService vetService) {
+    @Autowired
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService, SpecialityService specialityService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
+        this.petTypeService = petTypeService;
+        this.petService = petService;
+        this.specialityService = specialityService;
     }
 
     @Override
     public void run(String... args) {
+        // Create Pet Types:
+        var dog = new PetType();
+        dog.setType("dog");
+        var cat = new PetType();
+        cat.setType("cat");
+        petTypeService.save(dog);
+        petTypeService.save(cat);
+
         // Create Owner instances:
-        Owner owner1 = new Owner();
+        var owner1 = new Owner();
         owner1.setFirstname("Kakashi");
         owner1.setLastname("Hatake");
-        Owner owner2 = new Owner();
+        owner1.setAddress("times square");
+        owner1.setCity("New york");
+        owner1.setTelephone("0956599522");
+
+        // Create pet for owner1
+        var pakkun = new Pet();
+        pakkun.setPetType(dog);
+        pakkun.setBirthDate(LocalDate.now());
+        pakkun.setOwner(owner1);
+        pakkun.setName("Pakkun");
+        petService.save(pakkun);
+        owner1.getPets().add(pakkun);
+        ownerService.save(owner1);
+
+        var owner2 = new Owner();
         owner2.setFirstname("Itachi");
         owner2.setLastname("Uchiha");
-        ownerService.save(owner1);
+        owner2.setAddress("Grange Road");
+        owner2.setCity("London");
+        owner2.setTelephone("599898655");
+
+        // Create pet for owner2
+        var neku = new Pet();
+        neku.setName("Nekumumushi");
+        neku.setOwner(owner2);
+        neku.setBirthDate(LocalDate.now());
+        neku.setPetType(cat);
+        petService.save(neku);
+        owner2.getPets().add(neku);
         ownerService.save(owner2);
+
         logger.info("Owners created...");
 
+        // Create specialities
+        var radiology = new Speciality();
+        radiology.setDescription("Radiology");
+        specialityService.save(radiology);
+
+        var dentistry = new Speciality();
+        radiology.setDescription("Dentistry");
+        specialityService.save(dentistry);
+
+        var surgery = new Speciality();
+        radiology.setDescription("Surgery");
+        specialityService.save(surgery);
+
         // Create Vet instances:
-        Vet vet1 = new Vet();
+        var vet1 = new Vet();
         vet1.setFirstname("Madara");
         vet1.setLastname("Uchiha");
-        Vet vet2 = new Vet();
+        vet1.getSpecialities().add(surgery);
+        vetService.save(vet1);
+
+        var vet2 = new Vet();
         vet2.setFirstname("Jirayia");
         vet2.setLastname("Sensei");
-        vetService.save(vet1);
+        vet2.getSpecialities().add(radiology);
         vetService.save(vet2);
         logger.info("Vets created...");
     }
