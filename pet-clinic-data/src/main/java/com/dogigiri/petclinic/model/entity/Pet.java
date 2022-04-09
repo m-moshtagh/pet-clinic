@@ -1,13 +1,25 @@
 package com.dogigiri.petclinic.model.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.LinkedList;
+import java.util.List;
 
+@Entity
+@Table(name = "pets")
 public class Pet extends BaseEntity {
+    @Column(name = "name")
     private String name;
-    private PetType petType;
-    private Owner owner;
+    @Column(name = "birth_date")
     private LocalDate birthDate;
-
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    private PetType petType;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "owner_id")
+    private Owner owner;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
+    private List<Visit> visits = new LinkedList<>();
     public Pet() {
 
     }
@@ -50,5 +62,14 @@ public class Pet extends BaseEntity {
 
     public void setBirthDate(LocalDate birthDate) {
         this.birthDate = birthDate;
+    }
+
+    public List<Visit> getVisits() {
+        return visits;
+    }
+
+    public Pet setVisits(List<Visit> visits) {
+        this.visits = visits;
+        return this;
     }
 }

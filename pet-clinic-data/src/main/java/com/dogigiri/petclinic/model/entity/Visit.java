@@ -1,10 +1,17 @@
 package com.dogigiri.petclinic.model.entity;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "visits")
 public class Visit extends BaseEntity {
+    @Column(name = "visit_date")
     private LocalDate visitDate;
+    @Column(name = "description")
     private String description;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "pet_id")
     private Pet pet;
 
     public Visit() {
