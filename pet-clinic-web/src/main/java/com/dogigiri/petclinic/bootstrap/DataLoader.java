@@ -101,5 +101,11 @@ public class DataLoader implements CommandLineRunner {
         vet2.getSpecialities().add(radiology);
         vetService.save(vet2);
         logger.info("Vets created...");
+
+        // Create Visits:
+        var visit1 = new Visit();
+        visit1.setDescription("regularVisit");
+        visit1.setVisitDate(LocalDate.now());
+        visit1.setPet(neku);
     }
 }

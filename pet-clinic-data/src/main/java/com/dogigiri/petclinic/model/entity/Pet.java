@@ -20,6 +20,7 @@ public class Pet extends BaseEntity {
     private Owner owner;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "pet")
     private List<Visit> visits = new LinkedList<>();
+
     public Pet() {
 
     }

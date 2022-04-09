@@ -20,6 +20,7 @@ public class Owner extends Person {
         pet.setOwner(this);
         this.pets.add(pet);
     }
+
     public Owner() {
 
     }
