@@ -24,13 +24,11 @@ public class Owner extends Person {
     private Set<Pet> pets = new HashSet<>();
 
     @Builder
-    public Owner(Long id, String firstname, String lastname, String address, String city, String telephone,
-                 Set<Pet> pets) {
+    public Owner(long id, String firstname, String lastname, String address, String city, String telephone) {
         super(id, firstname, lastname);
         this.address = address;
         this.city = city;
         this.telephone = telephone;
-        this.pets = pets;
     }
 
     public void addPet(Pet pet) {
