@@ -11,8 +11,13 @@ logging:
         petclinic:
           DEBUG
 
-# i18internationalization
+
 spring:
+  # i18internationalization
   messages:
     basename: messages/messages
+  # Profiles
+  profiles:
+    active: "springdatajpa"
+#    active: "mapservice"
 

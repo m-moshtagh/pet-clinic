@@ -6,11 +6,13 @@ import com.dogigiri.petclinic.model.service.OwnerService;
 import com.dogigiri.petclinic.model.service.PetService;
 import com.dogigiri.petclinic.model.service.PetTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Profile({"default", "mapservice"})
 public class MapOwnerService extends MapService<Owner, Long> implements OwnerService {
     private final PetTypeService petTypeService;
     private final PetService petService;

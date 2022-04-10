@@ -2,11 +2,13 @@ package com.dogigiri.petclinic.model.service.mapservice;
 
 import com.dogigiri.petclinic.model.entity.Pet;
 import com.dogigiri.petclinic.model.service.PetService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
+@Profile({"default", "mapservice"})
 public class MapPetService extends MapService<Pet, Long> implements PetService {
     @Override
     public List<Pet> findAll() {

@@ -1,8 +1,14 @@
 package com.dogigiri.petclinic.model.entity;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
+@Setter
+@Getter
+@NoArgsConstructor
+@ToString
 @Entity
 @Table(name = "visits")
 public class Visit extends BaseEntity {
@@ -10,42 +16,15 @@ public class Visit extends BaseEntity {
     private LocalDate visitDate;
     @Column(name = "description")
     private String description;
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "pet_id")
     private Pet pet;
 
-    public Visit() {
-
-    }
-
+    @Builder
     public Visit(Long id, LocalDate visitDate, String description, Pet pet) {
         super(id);
         this.visitDate = visitDate;
         this.description = description;
-        this.pet = pet;
-    }
-
-    public LocalDate getVisitDate() {
-        return visitDate;
-    }
-
-    public void setVisitDate(LocalDate visitDate) {
-        this.visitDate = visitDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Pet getPet() {
-        return pet;
-    }
-
-    public void setPet(Pet pet) {
         this.pet = pet;
     }
 }

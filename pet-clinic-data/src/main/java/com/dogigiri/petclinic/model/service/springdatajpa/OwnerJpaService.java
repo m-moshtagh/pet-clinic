@@ -18,8 +18,8 @@ public class OwnerJpaService implements OwnerService {
         this.ownerRepository = ownerRepository;
     }
 
-    public Owner findByLastName(String lastName) {
-        return ownerRepository.findByLastName(lastName);
+    public Owner findByLastname(String lastname) {
+        return ownerRepository.findByLastname(lastname);
     }
 
     @Override

@@ -18,14 +18,16 @@ public class DataLoader implements CommandLineRunner {
     private final PetTypeService petTypeService;
     private final PetService petService;
     private final SpecialityService specialityService;
+    private final VisitService visitService;
 
     @Autowired
-    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService, SpecialityService specialityService) {
+    public DataLoader(OwnerService ownerService, VetService vetService, PetTypeService petTypeService, PetService petService, SpecialityService specialityService, VisitService visitService) {
         this.ownerService = ownerService;
         this.vetService = vetService;
         this.petTypeService = petTypeService;
         this.petService = petService;
         this.specialityService = specialityService;
+        this.visitService = visitService;
     }
 
     @Override
@@ -52,8 +54,8 @@ public class DataLoader implements CommandLineRunner {
         pakkun.setBirthDate(LocalDate.now());
         pakkun.setOwner(owner1);
         pakkun.setName("Pakkun");
-        petService.save(pakkun);
-        owner1.getPets().add(pakkun);
+        owner1.addPet(pakkun);
+
         ownerService.save(owner1);
 
         var owner2 = new Owner();
@@ -69,24 +71,18 @@ public class DataLoader implements CommandLineRunner {
         neku.setOwner(owner2);
         neku.setBirthDate(LocalDate.now());
         neku.setPetType(cat);
-        petService.save(neku);
-        owner2.getPets().add(neku);
+        owner2.addPet(neku);
         ownerService.save(owner2);
 
         logger.info("Owners created...");
 
         // Create specialities
-        var radiology = new Speciality();
-        radiology.setDescription("Radiology");
-        specialityService.save(radiology);
+        var radiology = Speciality.builder().description("Radiology").build();
 
-        var dentistry = new Speciality();
-        radiology.setDescription("Dentistry");
-        specialityService.save(dentistry);
+        var dentistry = Speciality.builder().description("Dentistry").build();
 
-        var surgery = new Speciality();
-        radiology.setDescription("Surgery");
-        specialityService.save(surgery);
+        var surgery = Speciality.builder().description("Surgery").build();
+
 
         // Create Vet instances:
         var vet1 = new Vet();
@@ -107,5 +103,6 @@ public class DataLoader implements CommandLineRunner {
         visit1.setDescription("regularVisit");
         visit1.setVisitDate(LocalDate.now());
         visit1.setPet(neku);
+        visitService.save(visit1);
     }
 }
